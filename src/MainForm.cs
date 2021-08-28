@@ -69,7 +69,7 @@ namespace sozluk
             LabelCount.Text = $"Loaded: {Words.Count} words";
         }
 
-        private void ShowWordDetails(string key)
+        private async void ShowWordDetails(string key)
         {
             if (key is not null or "")
             {
@@ -93,6 +93,7 @@ namespace sozluk
                     }
                     LabelDefinition.Text = builder.ToString();
                 }
+                await Model.GrabWikipediaLink(key);
             }
         }
 

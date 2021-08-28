@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace sozluk
@@ -259,6 +261,26 @@ namespace sozluk
             if (!url.Contains("https"))
                 url = @"https://" + url;
             return url;
+        }
+
+        /// <summary>
+        /// Trys to get Wikipedia article link from specified word name
+        /// </summary>
+        /// <param name="wordName">Specify a word to find article of</param>
+        /// <returns>Returns the link</returns>
+        internal static async Task<string> GrabWikipediaLink(string wordName)
+        {
+            UriBuilder builder = new()
+            {
+                Scheme = "https://",
+                Host = "en.wikipedia.org",
+                Path = "/w/api.php",
+                Query = $"action=opensearch&search={wordName}&limit=1&profile=normal&redirects=return"
+            };
+            Uri request = new(builder.ToString());
+
+            using (HttpClient c = new())
+                try { return UrlRegex.Match(await c.GetStringAsync(request)).ToString(); } catch (Exception) { return null; }
         }
     }
 }

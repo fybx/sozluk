@@ -48,6 +48,7 @@ namespace sozluk
             this.LabelWord = new System.Windows.Forms.Label();
             this.LabelUrl = new System.Windows.Forms.Label();
             this.@__Splitter = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.SplitListBody)).BeginInit();
             this.SplitListBody.Panel1.SuspendLayout();
             this.SplitListBody.Panel2.SuspendLayout();
@@ -277,6 +278,7 @@ namespace sozluk
             // 
             this.PanelTitleBox.Controls.Add(this.LabelWord);
             this.PanelTitleBox.Controls.Add(this.LabelUrl);
+            this.PanelTitleBox.Controls.Add(this.label1);
             this.PanelTitleBox.Location = new System.Drawing.Point(7, 14);
             this.PanelTitleBox.Name = "PanelTitleBox";
             this.PanelTitleBox.Size = new System.Drawing.Size(650, 27);
@@ -322,6 +324,20 @@ namespace sozluk
             this.@__Splitter.Name = "__Splitter";
             this.@__Splitter.Size = new System.Drawing.Size(650, 1);
             this.@__Splitter.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.label1.AutoSize = true;
+            this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.Color.DarkGray;
+            this.label1.Location = new System.Drawing.Point(202, 8);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(107, 17);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Wikipedia article";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // MainForm
             // 
@@ -383,6 +399,7 @@ namespace sozluk
         private System.Windows.Forms.TableLayoutPanel PanelDefinition;
         private System.Windows.Forms.FlowLayoutPanel PanelReferenceBox;
         private System.Windows.Forms.Label LabelReferenceTitle;
+        private System.Windows.Forms.Label label1;
     }
 }
 
