@@ -62,17 +62,19 @@ $ key to value: en => tr
 "encapsulation": "gizleme" "enkapsülasyon" "nesne yönelimli programlamada sınıfların içerdiği özellik ve metotlarının dışarıdan görünür ve ulaşılır olma seviyesini belirleyebilme özelliği"
 "insertion sort": "yerleştirmeli sıralama" "https://www.geeksforgeeks.org/insertion-sort/"
 "heapsort": "https://www.geeksforgeeks.org/heap-sort/" "dikey sıralama"
-"interpreter": "yorumlayıcı" "bir programlama/scripting diliyle yazılmış koddaki komutları derlemeye ihtiyaç kalmadan çalıştıran bilgisayar programı" "O(n²)"
-"iteration":
+"interpreter": "yorumlayıcı" "bir programlama/scripting diliyle yazılmış koddaki komutları derlemeye ihtiyaç kalmadan çalıştıran bilgisayar programı"
+"iteration": "yineleme" "tekrarlama" "iterasyon"
 "time complexity": "zaman karmaşıklığı" "girişinin boyutuna bağlı olarak bir algoritmanın çalışma süresi"
-"kernel":
-"logic programming":
-"methodology":
-"NLP; natural language processing":
-"OOP; object oriented programming":
-"pointer":
-"symbolic computation":
-"serializability":
+"kernel": "çekirdek"
+"logic programming": "mantıksal programlama" "geniş çapta genel mantığa dayanan programlama paradigma çeşididir"
+"methodology": "yöntem bilim" "bir bilim, sanat veya disiplin tarafından kullanılan yöntemler, prosedürler, çalışma kavramları, kurallar ve varsayımlar bütünü" "her bir aşamanın sonunda kesin çıktıları olan bir operasyonu belirli bir şekilde gerçekleştirme yolu"
+"NLP; natural language processing": "doğal dil işleme"
+"OOP; object oriented programming": "nesne yönelimli programlama"
+"pointer": "işaretçi" "birçok programlama dilinde bir bellek adresi saklayan obje, değişken"
+"symbolic computation": "matematiksel obje ve ifadeler üzerinde işlem yapılabilmesi için algoritma ve yazılımlar geliştiren bilimsel alan"
+"computer algebra": <ref=symbolic computation>
+"algebraic computation" <ref=symbolic computation>
+"serializability": 
 "serialization":
 "round-off error:"
 "quicksort":
