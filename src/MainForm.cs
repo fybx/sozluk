@@ -5,8 +5,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-using sozluk.Properties;
-
 namespace sozluk
 {
     public partial class MainForm : Form
@@ -88,7 +86,7 @@ namespace sozluk
                     {
                         if (definitions[i].StartsWith("<ref=") && definitions[i].EndsWith(">"))
                             WriteReference(definitions[i].Replace("<ref=", "").Replace(">", ""));
-                        else if (!IsUrl(definitions[i]))
+                        else if (!Model.IsUrl(definitions[i]))
                             builder.AppendFormat("{0}. {1}\n", i + 1, definitions[i]);
                         else
                             WriteUrl(definitions[i]);
@@ -100,15 +98,15 @@ namespace sozluk
 
         private void ApplyLanguage(string langCode = "en")
         {
-            // TODO: implement language
+            Text = langCode is "en" ? "Dictionary by ferityigitbalaban" : "Sözlük, ferityigitbalaban";
         }
 
         private void ApplyTheme(string theme = "black")
         {
             bool t = theme is "black";
 
-            PictureCancel.Image = t ? Resources.cancelsearch_blacktheme : Resources.cancelsearch_whitetheme;
-            PictureSearch.Image = t ? Resources.search_blacktheme : Resources.search_whitetheme;
+            PictureCancel.Image = t ? Properties.Resources.cancelsearch_blacktheme : Properties.Resources.cancelsearch_whitetheme;
+            PictureSearch.Image = t ? Properties.Resources.search_blacktheme : Properties.Resources.search_whitetheme;
         }
 
         private void WordSelected(object sender, EventArgs e)
@@ -145,17 +143,9 @@ namespace sozluk
             PictureCancel.Visible = !string.IsNullOrWhiteSpace(SearchBox.Text?.Replace(" ", string.Empty));
         }
 
-        private void PictureCancel_Click(object sender, EventArgs e)
-        {
-            SearchBox.Text = "";
-        }
+        private void PictureCancel_Click(object sender, EventArgs e) => SearchBox.Text = "";
 
-        private readonly Regex UrlRegex = new(@"([\w+]+\:\/\/)?([\w\d-]+\.)[\w-]+[\.\:]\w+([\/\?\=\&\#.]?[\w-]+)\/?", RegexOptions.Compiled | RegexOptions.CultureInvariant);
-
-        private void WriteUrl(string url)
-        {
-            LabelUrl.Text = url;
-        }
+        private void WriteUrl(string url) => LabelUrl.Text = url;
 
         private void WriteReference(string word)
         {
@@ -165,11 +155,6 @@ namespace sozluk
             reference.MouseEnter += LabelMouseEnter;
             reference.MouseLeave += LabelMouseLeave;
             PanelReferenceBox.Controls.Add(reference);
-        }
-
-        private bool IsUrl(string text)
-        {
-            return UrlRegex.IsMatch(text);
         }
 
         private void LabelMouseEnter(object sender, EventArgs e)
@@ -184,15 +169,6 @@ namespace sozluk
             lbl.ForeColor = System.Drawing.Color.DarkGray;
         }
 
-        private void LabelUrl_Click(object sender, EventArgs e) => System.Diagnostics.Process.Start("explorer", ParseUrl(LabelUrl.Text));
-
-        private static string ParseUrl(string url)
-        {
-            if (!url.Contains("www"))
-                url = "www." + url;
-            if (!url.Contains("http"))
-                url = @"https://" + url;
-            return url;
-        }
+        private void LabelUrl_Click(object sender, EventArgs e) => System.Diagnostics.Process.Start("explorer", Model.ParseUrl(LabelUrl.Text));
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace sozluk
@@ -232,6 +233,32 @@ namespace sozluk
             ? element.Split(delimiter, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
             : new string[] { element.Trim() })
             .SelectMany(element => element).Where(x => x.Replace(" ", "") is not "").ToArray();
+        }
+
+        /// <summary>
+        /// This regular expression matches all variants of URLs
+        /// </summary>
+        internal readonly static Regex UrlRegex = new(@"([\w+]+\:\/\/)?([\w\d-]+\.)[\w-]+[\.\:]\w+([\/\?\=\&\#.]?[\w-]+)\/?", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+        
+        /// <summary>
+        /// Returns true if specified string contains an URL, otherwise false
+        /// </summary>
+        /// <param name="text">Specify a text</param>
+        /// <returns></returns>
+        internal static bool IsUrl(string text) => UrlRegex.IsMatch(text);
+
+        /// <summary>
+        /// Adds "www" and "https" if specified string doesn't contain them
+        /// </summary>
+        /// <param name="url">Specify an URL</param>
+        /// <returns></returns>
+        internal static string ParseUrl(string url)
+        {
+            if (!url.Contains("www"))
+                url = "www." + url;
+            if (!url.Contains("https"))
+                url = @"https://" + url;
+            return url;
         }
     }
 }
