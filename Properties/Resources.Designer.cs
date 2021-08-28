@@ -7,9 +7,10 @@
 //     kod yeniden oluşturulursa kaybolur.
 // </auto-generated>
 //------------------------------------------------------------------------------
+using System;
 
-namespace sozluk{
-    using System;
+namespace sozluk.Properties
+{
     
     
     /// <summary>

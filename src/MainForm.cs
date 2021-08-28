@@ -5,6 +5,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
+using sozluk.Properties;
+
 namespace sozluk
 {
     public partial class MainForm : Form
