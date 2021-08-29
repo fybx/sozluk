@@ -9,9 +9,9 @@ namespace sozluk.Objects
     {
         public string Name { get; }
 
-        public List<string> Definitions { get; internal set; }
+        public string[] Definitions { get; internal set; }
 
-        public List<string> References { get; internal set; }
+        public string[] References { get; internal set; }
 
         public string WikipediaArticleLink { get; internal set; }
 
@@ -23,8 +23,8 @@ namespace sozluk.Objects
         /// <param name="dictionaryFileLine">One line of word entry</param>
         public Word(string dictionaryFileLine)
         {
-            Definitions = new List<string>();
-            References = new List<string>();
+            var defbuf = new List<string>();
+            var refbuf = new List<string>();
             string[] keyAndValue = Model.Tokenize(dictionaryFileLine);
             Name = keyAndValue[0];
             foreach (var item in keyAndValue.Skip(1).ToArray())
@@ -37,10 +37,13 @@ namespace sozluk.Objects
                         ArticleLink = item;
                 }
                 else if (item.Contains("<ref="))
-                    References.Add(item.Replace("<ref=", "").Replace(">", ""));
+                    refbuf.Add(item.Replace("<ref=", "").Replace(">", ""));
                 else
-                    Definitions.Add(item);
+                    defbuf.Add(item);
             }
+
+            Definitions = defbuf.ToArray();
+            References = refbuf.ToArray();
         }
 
         internal Word(Word word)
@@ -62,7 +65,7 @@ namespace sozluk.Objects
             if (Definitions.Any())
                 values.AddRange(Definitions);
             if (References.Any())
-                References.ForEach(x => values.Add($"<ref={x}>"));
+                References.ToList().ForEach(x => values.Add($"<ref={x}>"));
             if (ArticleLink is not null)
                 values.Add(ArticleLink);
             if (WikipediaArticleLink is not null)
