@@ -155,7 +155,7 @@ namespace sozluk
                 LabelWord.Text = currentWord.Name;
                 LabelWiki.Text = currentWord.WikipediaArticleLink is null ? "" : currentWord.WikipediaArticleLink;
                 LabelUrl.Text = currentWord.ArticleLink is null ? "" : currentWord.ArticleLink;
-                if (currentWord.References is not null)
+                if (currentWord.References.Count is not 0)
                     AddReferences(currentWord.References.ToArray());
                 string[] definitions = currentWord.Definitions.ToArray();
                 if (definitions.Length is 1)
