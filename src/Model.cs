@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -124,7 +125,7 @@ namespace sozluk
             return true;
         }
 
-        internal static void AddEntry(string word, string definition, string filePath) => File.AppendAllText(filePath, File.ReadAllText(filePath).Last() == Environment.NewLine.Last() ? $"\"{word}\": {definition}" : $"\n\"{word}\": {definition}");
+        internal static void AddEntry(Objects.Word word, string filePath) => File.AppendAllText(filePath, File.ReadAllText(filePath).Last() == Environment.NewLine.Last() ? $"{word.ToString()}" : $"\n{word.ToString()}");
 
         internal static void RemoveEntry(string word, string filePath) => File.WriteAllLines(filePath, File.ReadLines(filePath).Where(x => !x.StartsWith($"\"{word}\"")).ToList());
         
@@ -280,17 +281,21 @@ namespace sozluk
         /// <returns>Returns the link</returns>
         internal static string GrabWikipediaLink(string wordName)
         {
-            UriBuilder builder = new()
+            if (CheckForInternetConnection() is true)
             {
-                Scheme = "https://",
-                Host = "en.wikipedia.org",
-                Path = "/w/api.php",
-                Query = $"action=opensearch&search={wordName}&limit=1&profile=normal&redirects=return"
-            };
-            Uri request = new(builder.ToString());
+                UriBuilder builder = new()
+                {
+                    Scheme = "https://",
+                    Host = "en.wikipedia.org",
+                    Path = "/w/api.php",
+                    Query = $"action=opensearch&search={wordName}&limit=1&profile=normal&redirects=return"
+                };
+                Uri request = new(builder.ToString());
 
-            using (HttpClient c = new())
-                try { return UrlRegex.Match(c.GetStringAsync(request).Result).ToString(); } catch (Exception) { return null; }
+                using (HttpClient c = new())
+                    try { return UrlRegex.Match(c.GetStringAsync(request).Result).ToString(); } catch (Exception) { return null; }
+            }
+            return null;
         }
 
         internal static void AddLinkToDictionary(Objects.Word word, string link)
@@ -301,5 +306,19 @@ namespace sozluk
         }
 
         internal static void LaunchUrl(string url) => System.Diagnostics.Process.Start("explorer", ParseUrl(url));
+
+        private static bool CheckForInternetConnection()
+        {
+            try
+            {
+                using (var client = new WebClient())
+                    using (var stream = client.OpenRead("https://www.google.com"))
+                        return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }
