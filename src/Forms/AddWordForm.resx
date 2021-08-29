@@ -57,4 +57,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Important Notes:
+
+Application refuses to add entries if the word is present in dictionary file. Please check before adding entries.
+
+Avoid using characters such as &lt; &gt; : "" in definitions and references
+
+Don't use &lt;ref=wordName&gt; syntax while adding references, application will handle this while saving to dictionary file.
+ </value>
+  </data>
 </root>
