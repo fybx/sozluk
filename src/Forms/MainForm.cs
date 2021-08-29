@@ -8,7 +8,7 @@ namespace sozluk
 {
     public partial class MainForm : Form
     {
-        private List<src.Objects.Word> Words;
+        private List<Objects.Word> Words;
 
         internal static string[] Settings;
         internal static string DictionaryFilePath = AppDomain.CurrentDomain.BaseDirectory + "dictionary.txt";
@@ -52,7 +52,7 @@ namespace sozluk
 
         private void SearchBox_TextChanged(object sender, EventArgs e)
         {
-            src.Objects.Word[] items = Words.Where(x => x.Name.StartsWith(SearchBox.Text.Replace(" ", string.Empty).ToLower())).ToArray();
+            Objects.Word[] items = Words.Where(x => x.Name.StartsWith(SearchBox.Text.Replace(" ", string.Empty).ToLower())).ToArray();
             WordList.Items.Clear();
             foreach (var item in items)
                 WordList.Items.Add(item.Name);
@@ -151,7 +151,7 @@ namespace sozluk
             {
                 PanelReferenceBox.Controls.Clear();
 
-                src.Objects.Word currentWord = Words.Find(x => x.Name == key);
+                Objects.Word currentWord = Words.Find(x => x.Name == key);
                 LabelWord.Text = currentWord.Name;
                 LabelWiki.Text = currentWord.WikipediaArticleLink is null ? "" : currentWord.WikipediaArticleLink;
                 LabelUrl.Text = currentWord.ArticleLink is null ? "" : currentWord.ArticleLink;
