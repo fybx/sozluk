@@ -66,10 +66,10 @@ namespace sozluk
         /// <param name="filePath">Path to dictionary file</param>
         /// <param name="entries">Entries built from dictionary file</param>
         /// <returns>Returns <c>true</c> if successfully executed.</returns>
-        internal static void ReadStorageFile(string filePath, out string[] keyValueLanguage, out List<src.Objects.Word> dictionary) // TODO: improve performance
+        internal static void ReadStorageFile(string filePath, out string[] keyValueLanguage, out List<Objects.Word> dictionary) // TODO: improve performance
         {
             keyValueLanguage = new string[2];
-            dictionary = new List<src.Objects.Word>();
+            dictionary = new List<Objects.Word>();
 
             if (!File.Exists(filePath))
                 CreateStorageFile();
@@ -83,7 +83,7 @@ namespace sozluk
                         keyValueLanguage = lines[i].Replace("$ key to value: ", string.Empty).Split(new char[] { '=', '>' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
                     else
                     {
-                        dictionary.Add(new src.Objects.Word(lines[i]));
+                        dictionary.Add(new Objects.Word(lines[i]));
                     }
                 }
             }
@@ -128,7 +128,7 @@ namespace sozluk
 
         internal static void RemoveEntry(string word, string filePath) => File.WriteAllLines(filePath, File.ReadLines(filePath).Where(x => !x.StartsWith($"\"{word}\"")).ToList());
         
-        internal static void EditEntry(src.Objects.Word oldEntry, src.Objects.Word newEntry, string filePath)
+        internal static void EditEntry(Objects.Word oldEntry, Objects.Word newEntry, string filePath)
         {
             List<string> lines = File.ReadAllLines(filePath).ToList();
             int lineToEdit = lines.FindIndex(x => x.StartsWith($"\"{oldEntry.Name}\""));
@@ -293,9 +293,9 @@ namespace sozluk
                 try { return UrlRegex.Match(c.GetStringAsync(request).Result).ToString(); } catch (Exception) { return null; }
         }
 
-        internal static void AddLinkToDictionary(src.Objects.Word word, string link)
+        internal static void AddLinkToDictionary(Objects.Word word, string link)
         {
-            src.Objects.Word nW = new(word);
+            Objects.Word nW = new(word);
             nW.WikipediaArticleLink = link;
             EditEntry(word, nW, MainForm.DictionaryFilePath);
         }

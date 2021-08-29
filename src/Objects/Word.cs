@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace sozluk.src.Objects
+namespace sozluk.Objects
 {
     public class Word
     {
