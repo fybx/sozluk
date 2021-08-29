@@ -49,6 +49,7 @@ namespace sozluk
             this.LabelUrl = new System.Windows.Forms.Label();
             this.LabelWiki = new System.Windows.Forms.Label();
             this.@__Splitter = new System.Windows.Forms.Panel();
+            this.PictureAdd = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.SplitListBody)).BeginInit();
             this.SplitListBody.Panel1.SuspendLayout();
             this.SplitListBody.Panel2.SuspendLayout();
@@ -67,6 +68,7 @@ namespace sozluk
             this.PanelDefinition.SuspendLayout();
             this.PanelReferenceBox.SuspendLayout();
             this.PanelTitleBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureAdd)).BeginInit();
             this.SuspendLayout();
             // 
             // SplitListBody
@@ -132,6 +134,7 @@ namespace sozluk
             // SplitMenuBarDefinition.Panel1
             // 
             this.SplitMenuBarDefinition.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.SplitMenuBarDefinition.Panel1.Controls.Add(this.PictureAdd);
             this.SplitMenuBarDefinition.Panel1.Controls.Add(this.LabelCount);
             this.SplitMenuBarDefinition.Panel1.Controls.Add(this.PanelSearchBar);
             this.SplitMenuBarDefinition.Panel1.Cursor = System.Windows.Forms.Cursors.Arrow;
@@ -344,6 +347,17 @@ namespace sozluk
             this.@__Splitter.Size = new System.Drawing.Size(650, 1);
             this.@__Splitter.TabIndex = 2;
             // 
+            // PictureAdd
+            // 
+            this.PictureAdd.Image = global::sozluk.Properties.Resources.add_blacktheme;
+            this.PictureAdd.Location = new System.Drawing.Point(388, 4);
+            this.PictureAdd.Name = "PictureAdd";
+            this.PictureAdd.Size = new System.Drawing.Size(30, 30);
+            this.PictureAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PictureAdd.TabIndex = 4;
+            this.PictureAdd.TabStop = false;
+            this.PictureAdd.Click += new System.EventHandler(this.PictureAdd_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -380,6 +394,7 @@ namespace sozluk
             this.PanelReferenceBox.PerformLayout();
             this.PanelTitleBox.ResumeLayout(false);
             this.PanelTitleBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureAdd)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -405,6 +420,7 @@ namespace sozluk
         private System.Windows.Forms.FlowLayoutPanel PanelReferenceBox;
         private System.Windows.Forms.Label LabelReferenceTitle;
         private System.Windows.Forms.Label LabelWiki;
+        private System.Windows.Forms.PictureBox PictureAdd;
     }
 }
 
