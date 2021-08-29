@@ -137,7 +137,7 @@ namespace sozluk
             PanelReferenceBox.Controls.Add(new Label() { Text = "See also", Font = new System.Drawing.Font("Segoe UI", 10f) });
             for (int i = 0; i < words.Length; i++)
             {
-                Label reference = new() { Text = words[i] };
+                Label reference = new() { Text = words[i], AutoSize = true };
                 reference.Click += WordSelected;
                 reference.MouseEnter += LabelMouseEnter;
                 reference.MouseLeave += LabelMouseLeave;

@@ -32,26 +32,18 @@ namespace sozluk.src.Objects
                 if (Model.IsUrl(item))
                 {
                     if (new Uri(Model.ParseUrl(item)).Host.Contains("wikipedia"))
-                    {
                         WikipediaArticleLink = item;
-                    }
                     else
-                    {
                         ArticleLink = item;
-                    }
                 }
                 else if (item.Contains("<ref="))
-                {
                     References.Add(item.Replace("<ref=", "").Replace(">", ""));
-                }
                 else
-                {
                     Definitions.Add(item);
-                }
             }
         }
 
-        internal Word(src.Objects.Word word)
+        internal Word(Word word)
         {
             Name = word.Name;
             Definitions = word.Definitions;
