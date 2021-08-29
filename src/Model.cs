@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace sozluk
@@ -67,10 +66,10 @@ namespace sozluk
         /// <param name="filePath">Path to dictionary file</param>
         /// <param name="entries">Entries built from dictionary file</param>
         /// <returns>Returns <c>true</c> if successfully executed.</returns>
-        internal static void ReadStorageFile(string filePath, out string[] keyValueLanguage, out SortedDictionary<string, string[]> entries) // TODO: improve performance
+        internal static void ReadStorageFile(string filePath, out string[] keyValueLanguage, out List<src.Objects.Word> dictionary) // TODO: improve performance
         {
             keyValueLanguage = new string[2];
-            entries = new SortedDictionary<string, string[]>();
+            dictionary = new List<src.Objects.Word>();
 
             if (!File.Exists(filePath))
                 CreateStorageFile();
@@ -84,8 +83,7 @@ namespace sozluk
                         keyValueLanguage = lines[i].Replace("$ key to value: ", string.Empty).Split(new char[] { '=', '>' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
                     else
                     {
-                        string[] keyAndValue = Tokenize(lines[i]);
-                        entries.Add(keyAndValue[0], keyAndValue.Skip(1).ToArray());
+                        dictionary.Add(new src.Objects.Word(lines[i]));
                     }
                 }
             }
@@ -105,7 +103,7 @@ namespace sozluk
         {
             try
             {
-                // build string lines from SortedDictionary in <"key": { "value0", "value1", "value2" }> format, quotes included in string
+                // build string lines from SortedDictionary in <"key": "value0", "value1", "value2"> format, quotes included in string
                 string[] lines = new string[entries.Count + 1];
                 for (int i = 0; i < lines.Length; i++)
                 {
@@ -124,6 +122,18 @@ namespace sozluk
                 return false;
             }
             return true;
+        }
+
+        internal static void AddEntry(string word, string definition, string filePath) => File.AppendAllText(filePath, File.ReadAllText(filePath).Last() == Environment.NewLine.Last() ? $"\"{word}\": {definition}" : $"\n\"{word}\": {definition}");
+
+        internal static void RemoveEntry(string word, string filePath) => File.WriteAllLines(filePath, File.ReadLines(filePath).Where(x => !x.StartsWith($"\"{word}\"")).ToList());
+        
+        internal static void EditEntry(src.Objects.Word oldEntry, src.Objects.Word newEntry, string filePath)
+        {
+            List<string> lines = File.ReadAllLines(filePath).ToList();
+            int lineToEdit = lines.FindIndex(x => x.StartsWith($"\"{oldEntry.Name}\""));
+            lines[lineToEdit - 1] = newEntry.ToString();
+            File.WriteAllLines(filePath, lines);
         }
         #endregion
 
@@ -254,7 +264,7 @@ namespace sozluk
         /// </summary>
         /// <param name="url">Specify an URL</param>
         /// <returns></returns>
-        internal static string ParseUrl(string url)
+        public static string ParseUrl(string url)
         {
             if (!url.Contains("www"))
                 url = "www." + url;
@@ -268,7 +278,7 @@ namespace sozluk
         /// </summary>
         /// <param name="wordName">Specify a word to find article of</param>
         /// <returns>Returns the link</returns>
-        internal static async Task<string> GrabWikipediaLink(string wordName)
+        internal static string GrabWikipediaLink(string wordName)
         {
             UriBuilder builder = new()
             {
@@ -280,7 +290,16 @@ namespace sozluk
             Uri request = new(builder.ToString());
 
             using (HttpClient c = new())
-                try { return UrlRegex.Match(await c.GetStringAsync(request)).ToString(); } catch (Exception) { return null; }
+                try { return UrlRegex.Match(c.GetStringAsync(request).Result).ToString(); } catch (Exception) { return null; }
         }
+
+        internal static void AddLinkToDictionary(src.Objects.Word word, string link)
+        {
+            src.Objects.Word nW = new(word);
+            nW.WikipediaArticleLink = link;
+            EditEntry(word, nW, MainForm.DictionaryFilePath);
+        }
+
+        internal static void LaunchUrl(string url) => System.Diagnostics.Process.Start("explorer", ParseUrl(url));
     }
 }
