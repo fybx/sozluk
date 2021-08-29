@@ -47,8 +47,8 @@ namespace sozluk
             this.PanelTitleBox = new System.Windows.Forms.FlowLayoutPanel();
             this.LabelWord = new System.Windows.Forms.Label();
             this.LabelUrl = new System.Windows.Forms.Label();
+            this.LabelWiki = new System.Windows.Forms.Label();
             this.@__Splitter = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.SplitListBody)).BeginInit();
             this.SplitListBody.Panel1.SuspendLayout();
             this.SplitListBody.Panel2.SuspendLayout();
@@ -134,12 +134,14 @@ namespace sozluk
             this.SplitMenuBarDefinition.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.SplitMenuBarDefinition.Panel1.Controls.Add(this.LabelCount);
             this.SplitMenuBarDefinition.Panel1.Controls.Add(this.PanelSearchBar);
+            this.SplitMenuBarDefinition.Panel1.Cursor = System.Windows.Forms.Cursors.Arrow;
             // 
             // SplitMenuBarDefinition.Panel2
             // 
             this.SplitMenuBarDefinition.Panel2.Controls.Add(this.PanelDefinition);
             this.SplitMenuBarDefinition.Panel2.Controls.Add(this.PanelTitleBox);
             this.SplitMenuBarDefinition.Panel2.Controls.Add(this.@__Splitter);
+            this.SplitMenuBarDefinition.Panel2.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.SplitMenuBarDefinition.Size = new System.Drawing.Size(690, 501);
             this.SplitMenuBarDefinition.SplitterDistance = 38;
             this.SplitMenuBarDefinition.TabIndex = 0;
@@ -278,7 +280,7 @@ namespace sozluk
             // 
             this.PanelTitleBox.Controls.Add(this.LabelWord);
             this.PanelTitleBox.Controls.Add(this.LabelUrl);
-            this.PanelTitleBox.Controls.Add(this.label1);
+            this.PanelTitleBox.Controls.Add(this.LabelWiki);
             this.PanelTitleBox.Location = new System.Drawing.Point(7, 14);
             this.PanelTitleBox.Name = "PanelTitleBox";
             this.PanelTitleBox.Size = new System.Drawing.Size(650, 27);
@@ -313,6 +315,23 @@ namespace sozluk
             this.LabelUrl.MouseEnter += new System.EventHandler(this.LabelMouseEnter);
             this.LabelUrl.MouseLeave += new System.EventHandler(this.LabelMouseLeave);
             // 
+            // LabelWiki
+            // 
+            this.LabelWiki.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.LabelWiki.AutoSize = true;
+            this.LabelWiki.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelWiki.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.LabelWiki.ForeColor = System.Drawing.Color.DarkGray;
+            this.LabelWiki.Location = new System.Drawing.Point(202, 8);
+            this.LabelWiki.Name = "LabelWiki";
+            this.LabelWiki.Size = new System.Drawing.Size(107, 17);
+            this.LabelWiki.TabIndex = 4;
+            this.LabelWiki.Text = "Wikipedia article";
+            this.LabelWiki.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.LabelWiki.MouseClick += new System.Windows.Forms.MouseEventHandler(this.LabelWiki_MouseClick);
+            this.LabelWiki.MouseEnter += new System.EventHandler(this.LabelMouseEnter);
+            this.LabelWiki.MouseLeave += new System.EventHandler(this.LabelMouseLeave);
+            // 
             // __Splitter
             // 
             this.@__Splitter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -324,20 +343,6 @@ namespace sozluk
             this.@__Splitter.Name = "__Splitter";
             this.@__Splitter.Size = new System.Drawing.Size(650, 1);
             this.@__Splitter.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.label1.AutoSize = true;
-            this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.Color.DarkGray;
-            this.label1.Location = new System.Drawing.Point(202, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 17);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Wikipedia article";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // MainForm
             // 
@@ -399,7 +404,7 @@ namespace sozluk
         private System.Windows.Forms.TableLayoutPanel PanelDefinition;
         private System.Windows.Forms.FlowLayoutPanel PanelReferenceBox;
         private System.Windows.Forms.Label LabelReferenceTitle;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label LabelWiki;
     }
 }
 
