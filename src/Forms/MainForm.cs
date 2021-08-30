@@ -9,6 +9,8 @@ namespace sozluk
     public partial class MainForm : Form
     {
         private List<Objects.Word> Words;
+        private string Theme;
+        private string Language;
 
         internal static string[] Settings;
         internal static string DictionaryFilePath = AppDomain.CurrentDomain.BaseDirectory + "dictionary.txt";
@@ -77,11 +79,22 @@ namespace sozluk
         private void LabelWiki_MouseClick(object sender, MouseEventArgs e) => Model.LaunchUrl(Model.GrabWikipediaLink(LabelWord.Text));
 
         private void PictureCancel_Click(object sender, EventArgs e) => SearchBox.Text = "";
+
+        private void PictureAdd_Click(object sender, EventArgs e)
+        {
+            using (AddWordForm form = new(Theme, Language))
+                if (form.ShowDialog() is DialogResult.OK)
+                    if (!Words.Exists(x => x.Name == form.ReturnedWord.Name))
+                        AddWord(form.ReturnedWord);
+        }
         #endregion
 
         #region Methods
         private void PopulateWordList()
         {
+            if (WordList.Items.Count is not 0)
+                WordList.Items.Clear();
+
             foreach (var item in Words)
             {
                 WordList.Items.Add(item.Name);
@@ -155,7 +168,7 @@ namespace sozluk
                 LabelWord.Text = currentWord.Name;
                 LabelWiki.Text = currentWord.WikipediaArticleLink is null ? "" : currentWord.WikipediaArticleLink;
                 LabelUrl.Text = currentWord.ArticleLink is null ? "" : currentWord.ArticleLink;
-                if (currentWord.References.Count is not 0)
+                if (currentWord.References.Length is not 0)
                     AddReferences(currentWord.References.ToArray());
                 string[] definitions = currentWord.Definitions.ToArray();
                 if (definitions.Length is 1)
@@ -168,6 +181,13 @@ namespace sozluk
                     LabelDefinition.Text = builder.ToString();
                 }
             }
+        }
+
+        private void AddWord(Objects.Word word)
+        {
+            Words.Add(word);
+            Model.AddEntry(word, DictionaryFilePath);
+            PopulateWordList();
         }
         #endregion
     }
