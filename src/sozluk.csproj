@@ -28,4 +28,10 @@
     <None Remove="src\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Forms\EditWordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>
