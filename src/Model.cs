@@ -133,7 +133,7 @@ namespace sozluk
         {
             List<string> lines = File.ReadAllLines(filePath).ToList();
             int lineToEdit = lines.FindIndex(x => x.StartsWith($"\"{oldEntry.Name}\""));
-            lines[lineToEdit - 1] = newEntry.ToString();
+            lines[lineToEdit] = newEntry.ToString();
             File.WriteAllLines(filePath, lines);
         }
         #endregion
