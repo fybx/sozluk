@@ -64,7 +64,7 @@ Application refuses to add entries if the word is present in dictionary file. Pl
 
 Avoid using characters such as &lt; &gt; : "" in definitions and references
 
-Don't use &lt;ref=wordName&gt; syntax while adding references, application will handle this while saving to dictionary file.
+Don't use &lt;ref=wordName&gt; syntax while adding references, application will append required parts while saving to dictionary file.
  </value>
   </data>
 </root>
