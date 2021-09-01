@@ -83,6 +83,26 @@ namespace sozluk.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
+        internal static System.Drawing.Bitmap addentry_blacktheme {
+            get {
+                object obj = ResourceManager.GetObject("addentry_blacktheme", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap addentry_whitetheme {
+            get {
+                object obj = ResourceManager.GetObject("addentry_whitetheme", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
         internal static System.Drawing.Bitmap cancelsearch_blacktheme {
             get {
                 object obj = ResourceManager.GetObject("cancelsearch_blacktheme", resourceCulture);
@@ -107,6 +127,66 @@ namespace sozluk.Properties {
             get {
                 object obj = ResourceManager.GetObject("dictionary", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap editword_blacktheme {
+            get {
+                object obj = ResourceManager.GetObject("editword_blacktheme", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap editword_whitetheme {
+            get {
+                object obj = ResourceManager.GetObject("editword_whitetheme", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap link_blacktheme {
+            get {
+                object obj = ResourceManager.GetObject("link_blacktheme", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap link_whitetheme {
+            get {
+                object obj = ResourceManager.GetObject("link_whitetheme", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap removeentry_blacktheme {
+            get {
+                object obj = ResourceManager.GetObject("removeentry_blacktheme", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap removeentry_whitetheme {
+            get {
+                object obj = ResourceManager.GetObject("removeentry_whitetheme", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
