@@ -38,9 +38,9 @@ namespace sozluk
 
             if (!string.IsNullOrWhiteSpace(wordNameInput) && ListDefinitions.Items.Count is not 0)
             {
-                Objects.Word word = new(TxtWordName.Text);
+                Objects.Word word = new(wordNameInput);
                 word.ArticleLink = string.IsNullOrWhiteSpace(articleLinkIn) ? null : articleLinkIn;
-                word.WikipediaArticleLink = Model.GrabWikipediaLink(TxtWordName.Text);
+                word.WikipediaArticleLink = Model.GrabWikipediaLink(wordNameInput);
                 word.Definitions = new string[ListDefinitions.Items.Count];
                 ListDefinitions.Items.CopyTo(word.Definitions, 0);
                 if (ListReferences.Items.Count is not 0)
@@ -56,9 +56,10 @@ namespace sozluk
 
         private void BtnAddDefinition_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(TxtDefinition.Text))
+            string definitionInput = TxtDefinition.Text.Trim();
+            if (!string.IsNullOrWhiteSpace(definitionInput))
             {
-                ListDefinitions.Items.Add(TxtDefinition.Text);
+                ListDefinitions.Items.Add(definitionInput);
                 TxtDefinition.Clear();
                 BtnRemoveDefinition.Enabled = true;
             }
@@ -75,9 +76,10 @@ namespace sozluk
 
         private void BtnAddReference_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(TxtReference.Text))
+            string referenceInput = TxtReference.Text.Trim();
+            if (!string.IsNullOrWhiteSpace(referenceInput))
             {
-                ListReferences.Items.Add(TxtReference.Text);
+                ListReferences.Items.Add(referenceInput);
                 TxtReference.Clear();
                 BtnRemoveReference.Enabled = true;
             }
