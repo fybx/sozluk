@@ -92,6 +92,9 @@ namespace sozluk
         #region Methods
         private void PopulateWordList()
         {
+            var orderQuery = from word in Words orderby word.Name ascending select word;
+            Words = orderQuery.ToList();
+
             if (WordList.Items.Count is not 0)
                 WordList.Items.Clear();
 
