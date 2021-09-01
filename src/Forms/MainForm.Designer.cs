@@ -34,6 +34,8 @@ namespace sozluk
             this.WordList = new System.Windows.Forms.ListView();
             this.clm = new System.Windows.Forms.ColumnHeader();
             this.SplitMenuBarDefinition = new System.Windows.Forms.SplitContainer();
+            this.PictureEdit = new System.Windows.Forms.PictureBox();
+            this.PictureAdd = new System.Windows.Forms.PictureBox();
             this.LabelCount = new System.Windows.Forms.Label();
             this.PanelSearchBar = new System.Windows.Forms.Panel();
             this.PictureCancel = new System.Windows.Forms.PictureBox();
@@ -49,7 +51,6 @@ namespace sozluk
             this.LabelUrl = new System.Windows.Forms.Label();
             this.LabelWiki = new System.Windows.Forms.Label();
             this.@__Splitter = new System.Windows.Forms.Panel();
-            this.PictureAdd = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.SplitListBody)).BeginInit();
             this.SplitListBody.Panel1.SuspendLayout();
             this.SplitListBody.Panel2.SuspendLayout();
@@ -58,6 +59,8 @@ namespace sozluk
             this.SplitMenuBarDefinition.Panel1.SuspendLayout();
             this.SplitMenuBarDefinition.Panel2.SuspendLayout();
             this.SplitMenuBarDefinition.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureAdd)).BeginInit();
             this.PanelSearchBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SplitSearchBarImage)).BeginInit();
@@ -68,7 +71,6 @@ namespace sozluk
             this.PanelDefinition.SuspendLayout();
             this.PanelReferenceBox.SuspendLayout();
             this.PanelTitleBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureAdd)).BeginInit();
             this.SuspendLayout();
             // 
             // SplitListBody
@@ -134,6 +136,7 @@ namespace sozluk
             // SplitMenuBarDefinition.Panel1
             // 
             this.SplitMenuBarDefinition.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.SplitMenuBarDefinition.Panel1.Controls.Add(this.PictureEdit);
             this.SplitMenuBarDefinition.Panel1.Controls.Add(this.PictureAdd);
             this.SplitMenuBarDefinition.Panel1.Controls.Add(this.LabelCount);
             this.SplitMenuBarDefinition.Panel1.Controls.Add(this.PanelSearchBar);
@@ -148,6 +151,28 @@ namespace sozluk
             this.SplitMenuBarDefinition.Size = new System.Drawing.Size(690, 501);
             this.SplitMenuBarDefinition.SplitterDistance = 38;
             this.SplitMenuBarDefinition.TabIndex = 0;
+            // 
+            // PictureEdit
+            // 
+            this.PictureEdit.Image = global::sozluk.Properties.Resources.editword_blacktheme;
+            this.PictureEdit.Location = new System.Drawing.Point(424, 4);
+            this.PictureEdit.Name = "PictureEdit";
+            this.PictureEdit.Size = new System.Drawing.Size(30, 30);
+            this.PictureEdit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PictureEdit.TabIndex = 5;
+            this.PictureEdit.TabStop = false;
+            this.PictureEdit.Click += new System.EventHandler(this.PictureEdit_Click);
+            // 
+            // PictureAdd
+            // 
+            this.PictureAdd.Image = global::sozluk.Properties.Resources.add_blacktheme;
+            this.PictureAdd.Location = new System.Drawing.Point(388, 4);
+            this.PictureAdd.Name = "PictureAdd";
+            this.PictureAdd.Size = new System.Drawing.Size(30, 30);
+            this.PictureAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PictureAdd.TabIndex = 4;
+            this.PictureAdd.TabStop = false;
+            this.PictureAdd.Click += new System.EventHandler(this.PictureAdd_Click);
             // 
             // LabelCount
             // 
@@ -347,17 +372,6 @@ namespace sozluk
             this.@__Splitter.Size = new System.Drawing.Size(650, 1);
             this.@__Splitter.TabIndex = 2;
             // 
-            // PictureAdd
-            // 
-            this.PictureAdd.Image = global::sozluk.Properties.Resources.add_blacktheme;
-            this.PictureAdd.Location = new System.Drawing.Point(388, 4);
-            this.PictureAdd.Name = "PictureAdd";
-            this.PictureAdd.Size = new System.Drawing.Size(30, 30);
-            this.PictureAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.PictureAdd.TabIndex = 4;
-            this.PictureAdd.TabStop = false;
-            this.PictureAdd.Click += new System.EventHandler(this.PictureAdd_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -381,6 +395,8 @@ namespace sozluk
             this.SplitMenuBarDefinition.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SplitMenuBarDefinition)).EndInit();
             this.SplitMenuBarDefinition.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PictureEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureAdd)).EndInit();
             this.PanelSearchBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PictureCancel)).EndInit();
             this.SplitSearchBarImage.Panel1.ResumeLayout(false);
@@ -394,7 +410,6 @@ namespace sozluk
             this.PanelReferenceBox.PerformLayout();
             this.PanelTitleBox.ResumeLayout(false);
             this.PanelTitleBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureAdd)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -421,6 +436,7 @@ namespace sozluk
         private System.Windows.Forms.Label LabelReferenceTitle;
         private System.Windows.Forms.Label LabelWiki;
         private System.Windows.Forms.PictureBox PictureAdd;
+        private System.Windows.Forms.PictureBox PictureEdit;
     }
 }
 
