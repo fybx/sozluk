@@ -9,6 +9,7 @@ namespace sozluk
     public partial class MainForm : Form
     {
         private List<Objects.Word> Words;
+        private Objects.Word CurrentWord;
         private string Theme;
         private string Language;
 
@@ -86,6 +87,13 @@ namespace sozluk
                 if (form.ShowDialog() is DialogResult.OK)
                     if (!Words.Exists(x => x.Name == form.ReturnedWord.Name))
                         AddWord(form.ReturnedWord);
+        }
+
+        private void PictureEdit_Click(object sender, EventArgs e)
+        {
+            using (EditWordForm form = new EditWordForm(CurrentWord, Theme, Language))
+                if (form.ShowDialog() is DialogResult.OK)
+                    EditWord(form.ReturnedWord);
         }
         #endregion
 
@@ -167,13 +175,13 @@ namespace sozluk
             {
                 PanelReferenceBox.Controls.Clear();
 
-                Objects.Word currentWord = Words.Find(x => x.Name == key);
-                LabelWord.Text = currentWord.Name;
-                LabelWiki.Text = currentWord.WikipediaArticleLink is null ? "" : currentWord.WikipediaArticleLink;
-                LabelUrl.Text = currentWord.ArticleLink is null ? "" : currentWord.ArticleLink;
-                if (currentWord.References.Length is not 0)
-                    AddReferences(currentWord.References.ToArray());
-                string[] definitions = currentWord.Definitions.ToArray();
+                CurrentWord = Words.Find(x => x.Name == key);
+                LabelWord.Text = CurrentWord.Name;
+                LabelWiki.Text = CurrentWord.WikipediaArticleLink is null ? "" : CurrentWord.WikipediaArticleLink;
+                LabelUrl.Text = CurrentWord.ArticleLink is null ? "" : CurrentWord.ArticleLink;
+                if (CurrentWord.References.Length is not 0)
+                    AddReferences(CurrentWord.References.ToArray());
+                string[] definitions = CurrentWord.Definitions.ToArray();
                 if (definitions.Length is 1)
                     LabelDefinition.Text = $"1. {definitions[0]}";
                 else
@@ -191,6 +199,16 @@ namespace sozluk
             Words.Add(word);
             Model.AddEntry(word, DictionaryFilePath);
             PopulateWordList();
+            ShowWordDetails(word.Name);
+        }
+
+        private void EditWord(Objects.Word word)
+        {
+            Words.Remove(CurrentWord);
+            Words.Add(word);
+            Model.EditEntry(CurrentWord, word, DictionaryFilePath);
+            PopulateWordList();
+            ShowWordDetails(word.Name);
         }
         #endregion
     }

@@ -118,6 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="addentry_blacktheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\UIResources\addentry_blacktheme.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="addentry_whitetheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\UIResources\addentry_whitetheme.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="add_blacktheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\UIResources\add_blacktheme.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -132,6 +138,24 @@
   </data>
   <data name="dictionary" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\UIResources\dictionary.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="editword_blacktheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\UIResources\editword_blacktheme.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="editword_whitetheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\UIResources\editword_whitetheme.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="link_blacktheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\UIResources\link_blacktheme.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="link_whitetheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\UIResources\link_whitetheme.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="removeentry_blacktheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\UIResources\removeentry_blacktheme.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="removeentry_whitetheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\UIResources\removeentry_whitetheme.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="search_blacktheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\UIResources\search_blacktheme.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
