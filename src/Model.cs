@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -276,7 +278,19 @@ namespace sozluk
             EditEntry(word, nW, MainForm.DictionaryFilePath);
         }
 
-        internal static void LaunchUrl(string url) => System.Diagnostics.Process.Start("explorer.exe", url);
+        internal static void LaunchUrl(string url)
+        {
+            try
+            {
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                    Process.Start(new ProcessStartInfo(Environment.GetFolderPath(Environment.SpecialFolder.Windows) + "\\explorer.exe", url.Replace("&", "^&")) { CreateNoWindow = true });
+                else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                    Process.Start("xdg-open", url);
+                else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                    Process.Start("open", url);
+            }
+            catch (Exception) { return; }
+        }
 
         private static bool CheckForInternetConnection()
         {
