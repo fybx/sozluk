@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace sozluk
 {
@@ -288,12 +289,12 @@ namespace sozluk
                     Scheme = "https://",
                     Host = "en.wikipedia.org",
                     Path = "/w/api.php",
-                    Query = $"action=opensearch&search={wordName}&limit=1&profile=normal&redirects=return"
+                    Query = $"action=opensearch&search={wordName}&limit=1&profile=normal&redirects=return&format=xml"
                 };
                 Uri request = new(builder.ToString());
 
                 using (HttpClient c = new())
-                    try { return UrlRegex.Match(c.GetStringAsync(request).Result).ToString(); } catch (Exception) { return null; }
+                    try { return XElement.Parse(c.GetStringAsync(request).Result).Descendants().ElementAt(4).Value; } catch (Exception) { return null; }
             }
             return null;
         }
