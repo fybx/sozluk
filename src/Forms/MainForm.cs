@@ -77,7 +77,7 @@ namespace sozluk
 
         private void LabelUrl_Click(object sender, EventArgs e) => Model.LaunchUrl(LabelUrl.Text);
 
-        private void LabelWiki_MouseClick(object sender, MouseEventArgs e) => Model.LaunchUrl(Model.GrabWikipediaLink(LabelWord.Text));
+        private void LabelWiki_MouseClick(object sender, MouseEventArgs e) => Model.LaunchUrl(CurrentWord.WikipediaArticleLink);
 
         private void PictureCancel_Click(object sender, EventArgs e) => SearchBox.Text = "";
 
@@ -177,7 +177,14 @@ namespace sozluk
 
                 CurrentWord = Words.Find(x => x.Name == key);
                 LabelWord.Text = CurrentWord.Name;
-                LabelWiki.Text = CurrentWord.WikipediaArticleLink is null ? "" : CurrentWord.WikipediaArticleLink;
+
+                Objects.Word before = CurrentWord;
+                if (string.IsNullOrEmpty(CurrentWord.WikipediaArticleLink))
+                {
+                    CurrentWord.WikipediaArticleLink = Model.GrabWikipediaLink(CurrentWord.Name);
+                    Model.EditEntry(before, CurrentWord, DictionaryFilePath);
+                }
+
                 LabelUrl.Text = CurrentWord.ArticleLink is null ? "" : CurrentWord.ArticleLink;
                 if (CurrentWord.References.Length is not 0)
                     AddReferences(CurrentWord.References.ToArray());
