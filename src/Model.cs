@@ -262,20 +262,6 @@ namespace sozluk
         internal static bool IsUrl(string text) => UrlRegex.IsMatch(text);
 
         /// <summary>
-        /// Adds "www" and "https" if specified string doesn't contain them
-        /// </summary>
-        /// <param name="url">Specify an URL</param>
-        /// <returns></returns>
-        public static string ParseUrl(string url)
-        {
-            if (!url.Contains("www"))
-                url = "www." + url;
-            if (!url.Contains("https"))
-                url = @"https://" + url;
-            return url;
-        }
-
-        /// <summary>
         /// Trys to get Wikipedia article link from specified word name
         /// </summary>
         /// <param name="wordName">Specify a word to find article of</param>
@@ -306,7 +292,7 @@ namespace sozluk
             EditEntry(word, nW, MainForm.DictionaryFilePath);
         }
 
-        internal static void LaunchUrl(string url) => System.Diagnostics.Process.Start("explorer", ParseUrl(url));
+        internal static void LaunchUrl(string url) => System.Diagnostics.Process.Start("explorer.exe", url);
 
         private static bool CheckForInternetConnection()
         {
