@@ -1,0 +1,7 @@
+language: csharp
+solution: sozluk.sln
+mono: none
+dotnet: 5.0.400
+script:
+ - dotnet restore
+ - dotnet build --configuration Release
