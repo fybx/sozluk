@@ -31,7 +31,7 @@ namespace sozluk.Objects
             {
                 if (Model.IsUrl(item))
                 {
-                    if (new Uri(item).Host.Contains("wikipedia"))
+                    if (item.Contains("wikipedia"))
                         WikipediaArticleLink = item;
                     else
                         ArticleLink = item;
