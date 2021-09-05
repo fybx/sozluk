@@ -25,6 +25,8 @@ namespace sozluk
             "# Adding article URLs: Only one URL link can be added per word.\n" +
             "# Place your URL link in quotes as you would enter definitions. Application uses a Regex condition to find and match URL links.\n" +
             "# Link will be shown near word label if found.\n" +
+            "# Default dictionary file (this) is named dictionary.txt" +
+            "# Dictionary file used by application can be changed by editing dictionary.settings" +
             "#\n" +
             "# Next line starting with $ sign specifies words\' and definitions\' language";
 
@@ -36,26 +38,8 @@ namespace sozluk
         {
             string[] lines = new string[]
             {
-                "# dictionary application // ferityigitbalaban 2021",
-                "# dictionary file",
-                "#",
-                "# WARNING: DO NOT USE '#' in WORD ENTRIES!",
-                "# Any line containing '#' will be treated as a comment and will be ignored.",
-                "#",
-                "# Next line starting with $ sign specifies words' and definitions' language",
-                "$ key to value: en => tr",
-                "#",
-                "# Referencing different words in definitions: Define a word as usual, enter as many definitions as you like",
-                "# Add \"<ref=word_here>\" block to definitions, change 'word_here' with your word",
-                "# Application will automatically handle this entry and show a link to referenced word",
-                "#",
-                "# Adding article URLs: Only one URL link can be added per word.",
-                "# Place your URL link in quotes as you would enter definitions. Application uses a Regex condition to find and match URL links.",
-                "# Link will be shown near word label if found.",
-                "#",
-                "# Default dictionary file (this) is named dictionary.txt",
-                "# Dictionary file used by application can be changed by editing dictionary.settings",
-                "#",
+                StorageFileComment,
+                "$en=>tr",
                 "\"your library is empty\": \"Add words using this application or manually by editing dictionary.txt file in base directory.\" \"You can also use a different dictionary file. To use another file, edit dictionary.settings file in base directory.\"",
                 "\"fastidious\": \"müşkülpesent\""
             };
