@@ -21,7 +21,7 @@ namespace sozluk.Controls
 
         public float Indent { get; set; }
 
-        public LinkLabel(string theme, string langCode, string text, string link, LinkLabelType labelType, float indent = 0)
+        public LinkLabel(string theme, string text, string link, LinkLabelType labelType, float indent = 0)
         {
             InactiveColor = theme is "black" ? System.Drawing.Color.White : System.Drawing.Color.Black;
             HoverColor = System.Drawing.Color.Cyan;

@@ -25,7 +25,7 @@ namespace sozluk
             if (!Model.ReadSettingFile(AppSettingFilePath, out Settings))
                 Close();
             ApplySettings();
-            Model.ReadStorageFile(DictionaryFilePath, out string[] val, out Words);
+            Model.ReadStorageFile(DictionaryFilePath, out _, out Words);
             PopulateWordList();
             ShowWordDetails(Words.First().Name);
             PictureCancel.Visible = false;
@@ -88,7 +88,7 @@ namespace sozluk
 
         private void PictureEdit_Click(object sender, EventArgs e)
         {
-            using (EditWordForm form = new EditWordForm(CurrentWord, Theme, Language))
+            using (EditWordForm form = new(CurrentWord, Theme, Language))
                 if (form.ShowDialog() is DialogResult.OK)
                     EditWord(form.ReturnedWord);
         }
@@ -162,13 +162,13 @@ namespace sozluk
 
             for (int i = 0; i < words.Length; i++)
             {
-                Controls.LinkLabel reference = new(Theme, Language, words[i], words[i], sozluk.Controls.LinkLabelType.WordReference, 5);
+                Controls.LinkLabel reference = new(Theme, words[i], words[i], sozluk.Controls.LinkLabelType.WordReference, 5);
                 reference.Click += LinkLabel_Click;
                 PanelReferenceBox.Controls.Add(reference);
             }
             for (int i = 0; i < articles.Length; i++)
             {
-                Controls.LinkLabel link = new(Theme, Language, articles[i], articles[i], sozluk.Controls.LinkLabelType.Article, 5);
+                Controls.LinkLabel link = new(Theme, articles[i], articles[i], sozluk.Controls.LinkLabelType.Article, 5);
                 link.Click += LinkLabel_Click;
                 PanelReferenceBox.Controls.Add(link);
             }
