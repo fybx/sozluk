@@ -82,9 +82,8 @@ namespace sozluk
         private void PictureAdd_Click(object sender, EventArgs e)
         {
             using (AddWordForm form = new(Theme, Language))
-                if (form.ShowDialog() is DialogResult.OK)
-                    if (!Words.Exists(x => x.Name == form.ReturnedWord.Name))
-                        AddWord(form.ReturnedWord);
+                if (form.ShowDialog() is DialogResult.OK && !Words.Exists(x => x.Name == form.ReturnedWord.Name))
+                    AddWord(form.ReturnedWord);
         }
 
         private void PictureEdit_Click(object sender, EventArgs e)

@@ -96,10 +96,9 @@ namespace sozluk
             // WordList
             // 
             this.WordList.Activation = System.Windows.Forms.ItemActivation.OneClick;
-            this.WordList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.WordList.BackColor = System.Drawing.Color.FromArgb(20, 20, 20);
             this.WordList.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.WordList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.clm});
+            this.WordList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {this.clm});
             this.WordList.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.WordList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WordList.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -134,7 +133,7 @@ namespace sozluk
             // 
             // SplitMenuBarDefinition.Panel1
             // 
-            this.SplitMenuBarDefinition.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.SplitMenuBarDefinition.Panel1.BackColor = System.Drawing.Color.FromArgb(20, 20, 20);
             this.SplitMenuBarDefinition.Panel1.Controls.Add(this.PictureEdit);
             this.SplitMenuBarDefinition.Panel1.Controls.Add(this.PictureAdd);
             this.SplitMenuBarDefinition.Panel1.Controls.Add(this.LabelCount);
@@ -236,7 +235,7 @@ namespace sozluk
             // 
             // SearchBox
             // 
-            this.SearchBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.SearchBox.BackColor = System.Drawing.Color.FromArgb(20, 20, 20);
             this.SearchBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.SearchBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.SearchBox.ForeColor = System.Drawing.Color.White;
@@ -250,9 +249,7 @@ namespace sozluk
             // 
             // TableDefinitionReferences
             // 
-            this.TableDefinitionReferences.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TableDefinitionReferences.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             this.TableDefinitionReferences.AutoSize = true;
             this.TableDefinitionReferences.BackColor = System.Drawing.Color.Transparent;
             this.TableDefinitionReferences.ColumnCount = 1;
@@ -270,9 +267,7 @@ namespace sozluk
             // 
             // LabelDefinition
             // 
-            this.LabelDefinition.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LabelDefinition.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             this.LabelDefinition.AutoEllipsis = true;
             this.LabelDefinition.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.LabelDefinition.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -344,8 +339,7 @@ namespace sozluk
             // 
             // __Splitter
             // 
-            this.@__Splitter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.@__Splitter.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             this.@__Splitter.AutoSize = true;
             this.@__Splitter.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.@__Splitter.ForeColor = System.Drawing.SystemColors.ScrollBar;

@@ -54,7 +54,7 @@ namespace sozluk
         /// <param name="filePath">Path to dictionary file</param>
         /// <param name="entries">Entries built from dictionary file</param>
         /// <returns>Returns <c>true</c> if successfully executed.</returns>
-        internal static void ReadStorageFile(string filePath, out string[] keyValueLanguage, out List<Objects.Word> dictionary) // TODO: improve performance
+        internal static void ReadStorageFile(string filePath, out string[] keyValueLanguage, out List<Objects.Word> dictionary) 
         {
             keyValueLanguage = new string[2];
             dictionary = new List<Objects.Word>();
@@ -79,37 +79,6 @@ namespace sozluk
             {
                 ShowErrorMessage($"An {e.GetType().Name} error has occured while reading dictionary file. Please check error log for more details. \"{WriteErrorLog(e)}\"");
             }
-        }
-
-        /// <summary>
-        /// Saves supplied SortedDictionary to dictionary file at supplied path.
-        /// </summary>
-        /// <param name="filePath">Path to dictionary file.</param>
-        /// <param name="entries">Dictionary file to save</param>
-        /// <returns>Returns <c>true</c> if successfully executed.</returns>
-        internal static bool SaveStorageFile(string filePath, SortedDictionary<string, string> entries)
-        {
-            try
-            {
-                // build string lines from SortedDictionary in <"key": "value0", "value1", "value2"> format, quotes included in string
-                string[] lines = new string[entries.Count + 1];
-                for (int i = 0; i < lines.Length; i++)
-                {
-                    string value = "";
-                    for (int j = 0; j < entries.ElementAt(i).Value.Length; j++)
-                    {
-                        value += $"\"{entries.ElementAt(i).Value[j]}\"";
-                    }
-                    lines[i] = string.Format("\"{0}\": \"{1}\"", entries.ElementAt(i), value);
-                }
-                File.WriteAllLines(filePath, lines);
-            }
-            catch (Exception e)
-            {
-                ShowErrorMessage($"An {e.GetType().Name} error has occured while saving dictionary file. Please check error log for more details. \"{WriteErrorLog(e)}\"");
-                return false;
-            }
-            return true;
         }
 
         internal static void AddEntry(Objects.Word word, string filePath) => File.AppendAllText(filePath, File.ReadAllText(filePath).Last() == Environment.NewLine.Last() ? $"{word.ToString()}" : $"\n{word.ToString()}");
@@ -159,7 +128,7 @@ namespace sozluk
             settings = null;
             try
             {
-                settings = File.ReadAllLines(filePath).ToList().Where(x => !x.Contains("#")).ToArray();
+                settings = File.ReadAllLines(filePath).AsEnumerable().Where(x => !x.Contains("#")).ToArray();
             }
             catch (Exception e)
             {
@@ -289,7 +258,7 @@ namespace sozluk
                 else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
                     Process.Start("open", url);
             }
-            catch (Exception) { return; }
+            catch (Exception) { }
         }
 
         private static bool CheckForInternetConnection()
