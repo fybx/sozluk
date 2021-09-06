@@ -92,6 +92,15 @@ namespace sozluk
                 if (form.ShowDialog() is DialogResult.OK)
                     EditWord(form.ReturnedWord);
         }
+
+        private void LinkLabel_Click(object sender, EventArgs e)
+        {
+            Controls.LinkLabel label = (Controls.LinkLabel)sender;
+            if (label.LabelType is sozluk.Controls.LinkLabelType.WordReference)
+                ShowWordDetails(label.Link);
+            else
+                Model.LaunchUrl(label.Link);
+        }
         #endregion
 
         #region Methods
@@ -172,15 +181,6 @@ namespace sozluk
                 link.Click += LinkLabel_Click;
                 PanelReferenceBox.Controls.Add(link);
             }
-        }
-
-        private void LinkLabel_Click(object sender, EventArgs e)
-        {
-            Controls.LinkLabel label = (Controls.LinkLabel)sender;
-            if (label.LabelType is sozluk.Controls.LinkLabelType.WordReference)
-                ShowWordDetails(label.Link);
-            else
-                Model.LaunchUrl(label.Link);
         }
 
         private void ShowWordDetails(string key)
