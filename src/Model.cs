@@ -249,6 +249,7 @@ namespace sozluk
 
         internal static void LaunchUrl(string url)
         {
+            url = url.StartsWith("http") is false ? "http://" + url : url;
             try
             {
                 if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
