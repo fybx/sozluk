@@ -81,7 +81,7 @@ namespace sozluk
             }
         }
 
-        internal static void AddEntry(Objects.Word word, string filePath) => File.AppendAllText(filePath, File.ReadAllText(filePath).Last() == Environment.NewLine.Last() ? $"{word.ToString()}" : $"\n{word.ToString()}");
+        internal static void AddEntry(Objects.Word word, string filePath) => File.AppendAllText(filePath, File.ReadAllText(filePath).Last() == Environment.NewLine.Last() ? $"{word}" : $"\n{word}");
 
         internal static void RemoveEntry(string word, string filePath) => File.WriteAllLines(filePath, File.ReadLines(filePath).Where(x => !x.StartsWith($"\"{word}\"")).ToList());
         
@@ -147,7 +147,7 @@ namespace sozluk
         {
             try
             {
-                File.WriteAllLines(MainForm.AppSettingFilePath, settings);
+                File.WriteAllLines(filePath, settings);
             }
             catch (Exception e)
             {
@@ -258,7 +258,10 @@ namespace sozluk
                 else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
                     Process.Start("open", url);
             }
-            catch (Exception) { }
+            catch (Exception e) 
+            {
+                ShowErrorMessage($"An {e.GetType().Name} error has occured while launching url! Please check error log for more details. \"{WriteErrorLog(e)}\"");
+            }
         }
 
         private static bool CheckForInternetConnection()
