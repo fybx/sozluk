@@ -75,8 +75,6 @@ namespace sozluk
             lbl.ForeColor = System.Drawing.Color.DarkGray;
         }
 
-        private void LabelUrl_Click(object sender, EventArgs e) => Model.LaunchUrl(LabelUrl.Text);
-
         private void LabelWiki_MouseClick(object sender, MouseEventArgs e) => Model.LaunchUrl(CurrentWord.WikipediaArticleLink);
 
         private void PictureCancel_Click(object sender, EventArgs e) => SearchBox.Text = "";
@@ -145,28 +143,45 @@ namespace sozluk
 
         private void ApplyLanguage(string langCode = "en")
         {
+            Language = langCode;
             Text = langCode is "en" ? "Dictionary by ferityigitbalaban" : "Sözlük, ferityigitbalaban";
         }
 
         private void ApplyTheme(string theme = "black")
         {
+            Theme = theme;
             bool t = theme is "black";
 
             PictureCancel.Image = t ? Properties.Resources.cancelsearch_blacktheme : Properties.Resources.cancelsearch_whitetheme;
             PictureSearch.Image = t ? Properties.Resources.search_blacktheme : Properties.Resources.search_whitetheme;
         }
 
-        private void AddReferences(string[] words)
+        private void AddReferences(string[] words, string[] articles)
         {
-            PanelReferenceBox.Controls.Add(new Label() { Text = "See also", Font = new System.Drawing.Font("Segoe UI", 10f) });
+            if (words.Length is not 0 || articles.Length is not 0)
+                PanelReferenceBox.Controls.Add(new Label() { Text = "Read more", Font = new System.Drawing.Font("Segoe UI", 10f) });
+
             for (int i = 0; i < words.Length; i++)
             {
-                Label reference = new() { Text = words[i], AutoSize = true };
-                reference.Click += WordSelected;
-                reference.MouseEnter += LabelMouseEnter;
-                reference.MouseLeave += LabelMouseLeave;
+                Controls.LinkLabel reference = new(Theme, Language, words[i], words[i], sozluk.Controls.LinkLabelType.WordReference, 5);
+                reference.Click += LinkLabel_Click;
                 PanelReferenceBox.Controls.Add(reference);
             }
+            for (int i = 0; i < articles.Length; i++)
+            {
+                Controls.LinkLabel link = new(Theme, Language, articles[i], articles[i], sozluk.Controls.LinkLabelType.Article, 5);
+                link.Click += LinkLabel_Click;
+                PanelReferenceBox.Controls.Add(link);
+            }
+        }
+
+        private void LinkLabel_Click(object sender, EventArgs e)
+        {
+            Controls.LinkLabel label = (Controls.LinkLabel)sender;
+            if (label.LabelType is sozluk.Controls.LinkLabelType.WordReference)
+                ShowWordDetails(label.Link);
+            else
+                Model.LaunchUrl(label.Link);
         }
 
         private void ShowWordDetails(string key)
@@ -184,10 +199,8 @@ namespace sozluk
                     CurrentWord.WikipediaArticleLink = Model.GrabWikipediaLink(CurrentWord.Name);
                     Model.EditEntry(before, CurrentWord, DictionaryFilePath);
                 }
-
-                LabelUrl.Text = CurrentWord.ArticleLink is null ? "" : CurrentWord.ArticleLink;
-                if (CurrentWord.References.Length is not 0)
-                    AddReferences(CurrentWord.References.ToArray());
+                   
+                AddReferences(CurrentWord.References, CurrentWord.ArticleLinks);
                 string[] definitions = CurrentWord.Definitions.ToArray();
                 if (definitions.Length is 1)
                     LabelDefinition.Text = $"1. {definitions[0]}";

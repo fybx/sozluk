@@ -42,13 +42,12 @@ namespace sozluk
             this.SplitSearchBarImage = new System.Windows.Forms.SplitContainer();
             this.PictureSearch = new System.Windows.Forms.PictureBox();
             this.SearchBox = new System.Windows.Forms.TextBox();
-            this.PanelDefinition = new System.Windows.Forms.TableLayoutPanel();
+            this.TableDefinitionReferences = new System.Windows.Forms.TableLayoutPanel();
             this.LabelDefinition = new System.Windows.Forms.Label();
             this.PanelReferenceBox = new System.Windows.Forms.FlowLayoutPanel();
             this.LabelReferenceTitle = new System.Windows.Forms.Label();
             this.PanelTitleBox = new System.Windows.Forms.FlowLayoutPanel();
             this.LabelWord = new System.Windows.Forms.Label();
-            this.LabelUrl = new System.Windows.Forms.Label();
             this.LabelWiki = new System.Windows.Forms.Label();
             this.@__Splitter = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.SplitListBody)).BeginInit();
@@ -68,7 +67,7 @@ namespace sozluk
             this.SplitSearchBarImage.Panel2.SuspendLayout();
             this.SplitSearchBarImage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureSearch)).BeginInit();
-            this.PanelDefinition.SuspendLayout();
+            this.TableDefinitionReferences.SuspendLayout();
             this.PanelReferenceBox.SuspendLayout();
             this.PanelTitleBox.SuspendLayout();
             this.SuspendLayout();
@@ -144,7 +143,7 @@ namespace sozluk
             // 
             // SplitMenuBarDefinition.Panel2
             // 
-            this.SplitMenuBarDefinition.Panel2.Controls.Add(this.PanelDefinition);
+            this.SplitMenuBarDefinition.Panel2.Controls.Add(this.TableDefinitionReferences);
             this.SplitMenuBarDefinition.Panel2.Controls.Add(this.PanelTitleBox);
             this.SplitMenuBarDefinition.Panel2.Controls.Add(this.@__Splitter);
             this.SplitMenuBarDefinition.Panel2.Cursor = System.Windows.Forms.Cursors.Arrow;
@@ -249,24 +248,25 @@ namespace sozluk
             this.SearchBox.TabIndex = 1;
             this.SearchBox.TextChanged += new System.EventHandler(this.SearchBox_TextChanged);
             // 
-            // PanelDefinition
+            // TableDefinitionReferences
             // 
-            this.PanelDefinition.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.TableDefinitionReferences.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.PanelDefinition.AutoSize = true;
-            this.PanelDefinition.BackColor = System.Drawing.Color.Transparent;
-            this.PanelDefinition.ColumnCount = 1;
-            this.PanelDefinition.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.PanelDefinition.Controls.Add(this.LabelDefinition, 0, 0);
-            this.PanelDefinition.Controls.Add(this.PanelReferenceBox, 0, 1);
-            this.PanelDefinition.Location = new System.Drawing.Point(27, 66);
-            this.PanelDefinition.Name = "PanelDefinition";
-            this.PanelDefinition.RowCount = 2;
-            this.PanelDefinition.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.PanelDefinition.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 87F));
-            this.PanelDefinition.Size = new System.Drawing.Size(630, 381);
-            this.PanelDefinition.TabIndex = 5;
+            this.TableDefinitionReferences.AutoSize = true;
+            this.TableDefinitionReferences.BackColor = System.Drawing.Color.Transparent;
+            this.TableDefinitionReferences.ColumnCount = 1;
+            this.TableDefinitionReferences.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.TableDefinitionReferences.Controls.Add(this.LabelDefinition, 0, 0);
+            this.TableDefinitionReferences.Controls.Add(this.PanelReferenceBox, 0, 1);
+            this.TableDefinitionReferences.Location = new System.Drawing.Point(27, 66);
+            this.TableDefinitionReferences.Name = "TableDefinitionReferences";
+            this.TableDefinitionReferences.RowCount = 2;
+            this.TableDefinitionReferences.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.TableDefinitionReferences.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 130F));
+            this.TableDefinitionReferences.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.TableDefinitionReferences.Size = new System.Drawing.Size(630, 381);
+            this.TableDefinitionReferences.TabIndex = 5;
             // 
             // LabelDefinition
             // 
@@ -279,7 +279,7 @@ namespace sozluk
             this.LabelDefinition.LiveSetting = System.Windows.Forms.Automation.AutomationLiveSetting.Assertive;
             this.LabelDefinition.Location = new System.Drawing.Point(3, 0);
             this.LabelDefinition.Name = "LabelDefinition";
-            this.LabelDefinition.Size = new System.Drawing.Size(624, 294);
+            this.LabelDefinition.Size = new System.Drawing.Size(624, 251);
             this.LabelDefinition.TabIndex = 1;
             this.LabelDefinition.Text = "<Definition>";
             // 
@@ -289,9 +289,9 @@ namespace sozluk
             this.PanelReferenceBox.Controls.Add(this.LabelReferenceTitle);
             this.PanelReferenceBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelReferenceBox.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.PanelReferenceBox.Location = new System.Drawing.Point(3, 297);
+            this.PanelReferenceBox.Location = new System.Drawing.Point(3, 254);
             this.PanelReferenceBox.Name = "PanelReferenceBox";
-            this.PanelReferenceBox.Size = new System.Drawing.Size(624, 81);
+            this.PanelReferenceBox.Size = new System.Drawing.Size(624, 124);
             this.PanelReferenceBox.TabIndex = 2;
             // 
             // LabelReferenceTitle
@@ -300,14 +300,13 @@ namespace sozluk
             this.LabelReferenceTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.LabelReferenceTitle.Location = new System.Drawing.Point(3, 0);
             this.LabelReferenceTitle.Name = "LabelReferenceTitle";
-            this.LabelReferenceTitle.Size = new System.Drawing.Size(60, 17);
+            this.LabelReferenceTitle.Size = new System.Drawing.Size(77, 17);
             this.LabelReferenceTitle.TabIndex = 0;
-            this.LabelReferenceTitle.Text = "See also:";
+            this.LabelReferenceTitle.Text = "Read more:";
             // 
             // PanelTitleBox
             // 
             this.PanelTitleBox.Controls.Add(this.LabelWord);
-            this.PanelTitleBox.Controls.Add(this.LabelUrl);
             this.PanelTitleBox.Controls.Add(this.LabelWiki);
             this.PanelTitleBox.Location = new System.Drawing.Point(7, 14);
             this.PanelTitleBox.Name = "PanelTitleBox";
@@ -326,23 +325,6 @@ namespace sozluk
             this.LabelWord.TabIndex = 0;
             this.LabelWord.Text = "<Word>";
             // 
-            // LabelUrl
-            // 
-            this.LabelUrl.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.LabelUrl.AutoSize = true;
-            this.LabelUrl.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.LabelUrl.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.LabelUrl.ForeColor = System.Drawing.Color.DarkGray;
-            this.LabelUrl.Location = new System.Drawing.Point(97, 8);
-            this.LabelUrl.Name = "LabelUrl";
-            this.LabelUrl.Size = new System.Drawing.Size(99, 17);
-            this.LabelUrl.TabIndex = 3;
-            this.LabelUrl.Text = "<url to article>";
-            this.LabelUrl.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.LabelUrl.Click += new System.EventHandler(this.LabelUrl_Click);
-            this.LabelUrl.MouseEnter += new System.EventHandler(this.LabelMouseEnter);
-            this.LabelUrl.MouseLeave += new System.EventHandler(this.LabelMouseLeave);
-            // 
             // LabelWiki
             // 
             this.LabelWiki.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -350,7 +332,7 @@ namespace sozluk
             this.LabelWiki.Cursor = System.Windows.Forms.Cursors.Hand;
             this.LabelWiki.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.LabelWiki.ForeColor = System.Drawing.Color.DarkGray;
-            this.LabelWiki.Location = new System.Drawing.Point(202, 8);
+            this.LabelWiki.Location = new System.Drawing.Point(97, 8);
             this.LabelWiki.Name = "LabelWiki";
             this.LabelWiki.Size = new System.Drawing.Size(107, 17);
             this.LabelWiki.TabIndex = 4;
@@ -382,7 +364,7 @@ namespace sozluk
             this.ForeColor = System.Drawing.Color.White;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
-            this.Text = "Sözlük";
+            this.Text = "Dictionary";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.SplitListBody.Panel1.ResumeLayout(false);
@@ -405,7 +387,7 @@ namespace sozluk
             ((System.ComponentModel.ISupportInitialize)(this.SplitSearchBarImage)).EndInit();
             this.SplitSearchBarImage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PictureSearch)).EndInit();
-            this.PanelDefinition.ResumeLayout(false);
+            this.TableDefinitionReferences.ResumeLayout(false);
             this.PanelReferenceBox.ResumeLayout(false);
             this.PanelReferenceBox.PerformLayout();
             this.PanelTitleBox.ResumeLayout(false);
@@ -427,11 +409,10 @@ namespace sozluk
         private System.Windows.Forms.Label LabelCount;
         private System.Windows.Forms.PictureBox PictureCancel;
         private System.Windows.Forms.Panel __Splitter;
-        private System.Windows.Forms.Label LabelUrl;
         private System.Windows.Forms.ColumnHeader clm;
         private System.Windows.Forms.Label LabelDefinition;
         private System.Windows.Forms.FlowLayoutPanel PanelTitleBox;
-        private System.Windows.Forms.TableLayoutPanel PanelDefinition;
+        private System.Windows.Forms.TableLayoutPanel TableDefinitionReferences;
         private System.Windows.Forms.FlowLayoutPanel PanelReferenceBox;
         private System.Windows.Forms.Label LabelReferenceTitle;
         private System.Windows.Forms.Label LabelWiki;
