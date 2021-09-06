@@ -34,12 +34,10 @@ namespace sozluk
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             string wordNameInput = TxtWordName.Text.Trim();
-            string articleLinkIn = TxtArticleLink.Text.Trim();
 
             if (!string.IsNullOrWhiteSpace(wordNameInput) && ListDefinitions.Items.Count is not 0)
             {
                 Objects.Word word = new(wordNameInput);
-                word.ArticleLink = string.IsNullOrWhiteSpace(articleLinkIn) ? null : articleLinkIn;
                 word.WikipediaArticleLink = Model.GrabWikipediaLink(wordNameInput);
                 word.Definitions = new string[ListDefinitions.Items.Count];
                 ListDefinitions.Items.CopyTo(word.Definitions, 0);
@@ -47,6 +45,11 @@ namespace sozluk
                 {
                     word.References = new string[ListReferences.Items.Count];
                     ListReferences.Items.CopyTo(word.References, 0);
+                }
+                if (ListArticles.Items.Count is not 0)
+                {
+                    word.ArticleLinks = new string[ListArticles.Items.Count];
+                    ListArticles.Items.CopyTo(word.ArticleLinks, 0);
                 }
 
                 ReturnedWord = word;
@@ -91,6 +94,26 @@ namespace sozluk
                 ListReferences.Items.RemoveAt(ListReferences.SelectedIndex);
 
             if (ListDefinitions.Items.Count is 0)
+                BtnRemoveReference.Enabled = false;
+        }
+
+        private void BtnAddArticle_Click(object sender, EventArgs e)
+        {
+            string articleInput = TxtArticle.Text.Trim();
+            if (!string.IsNullOrWhiteSpace(articleInput))
+            {
+                ListArticles.Items.Add(articleInput);
+                TxtArticle.Clear();
+                BtnRemoveArticle.Enabled = true;
+            }
+        }
+
+        private void BtnRemoveArticle_Click(object sender, EventArgs e)
+        {
+            if (ListArticles.SelectedIndex is not -1)
+                ListArticles.Items.RemoveAt(ListArticles.SelectedIndex);
+
+            if (ListArticles.Items.Count is 0)
                 BtnRemoveReference.Enabled = false;
         }
         #endregion

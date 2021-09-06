@@ -15,7 +15,7 @@ namespace sozluk.Objects
 
         public string WikipediaArticleLink { get; internal set; }
 
-        public string ArticleLink { get; internal set; }
+        public string[] ArticleLinks { get; internal set; }
 
         /// <summary>
         /// This constructor gets a line of dictionary file and uses the corresponding syntax to select matching fields, initializing a word.
@@ -25,6 +25,7 @@ namespace sozluk.Objects
         {
             var defbuf = new List<string>();
             var refbuf = new List<string>();
+            var lnkbuf = new List<string>();
             string[] keyAndValue = Model.Tokenize(dictionaryFileLine);
             Name = keyAndValue[0];
             foreach (var item in keyAndValue.Skip(1).ToArray())
@@ -34,7 +35,7 @@ namespace sozluk.Objects
                     if (item.Contains("wikipedia"))
                         WikipediaArticleLink = item;
                     else
-                        ArticleLink = item;
+                        lnkbuf.Add(item);
                 }
                 else if (item.Contains("<ref="))
                     refbuf.Add(item.Replace("<ref=", "").Replace(">", ""));
@@ -42,6 +43,7 @@ namespace sozluk.Objects
                     defbuf.Add(item);
             }
 
+            ArticleLinks = lnkbuf.ToArray();
             Definitions = defbuf.ToArray();
             References = refbuf.ToArray();
         }
@@ -52,7 +54,7 @@ namespace sozluk.Objects
             Definitions = word.Definitions;
             References = word.References;
             WikipediaArticleLink = word.WikipediaArticleLink;
-            ArticleLink = word.ArticleLink;
+            ArticleLinks = word.ArticleLinks;
         }
 
         public override string ToString()
@@ -66,8 +68,8 @@ namespace sozluk.Objects
                 values.AddRange(Definitions);
             if (References.Any())
                 References.ToList().ForEach(x => values.Add($"<ref={x}>"));
-            if (ArticleLink is not null)
-                values.Add(ArticleLink);
+            if (ArticleLinks is not null)
+                ArticleLinks.ToList().ForEach(x => values.Add($"\"{x}\""));
             if (WikipediaArticleLink is not null)
                 values.Add(WikipediaArticleLink);
 

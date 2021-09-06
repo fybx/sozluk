@@ -18,7 +18,7 @@ namespace sozluk
             Language = langCode;
             Text = $"Editing entry: {word.Name}";
             TxtWordName.Text = word.Name;
-            TxtArticleLink.Text = word.ArticleLink;
+            ListArticles.Items.AddRange(word.ArticleLinks);
             ListDefinitions.Items.AddRange(word.Definitions);
             ListReferences.Items.AddRange(word.References);
         }
@@ -39,12 +39,10 @@ namespace sozluk
         private void BtnSave_Click(object sender, EventArgs e)
         {
             string wordNameInput = TxtWordName.Text.Trim();
-            string articleLinkIn = TxtArticleLink.Text.Trim();
 
             if (ListDefinitions.Items.Count is not 0)
             {
                 Objects.Word word = new(wordNameInput);
-                word.ArticleLink = string.IsNullOrWhiteSpace(articleLinkIn) ? null : articleLinkIn;
                 word.WikipediaArticleLink = Model.GrabWikipediaLink(wordNameInput);
                 word.Definitions = new string[ListDefinitions.Items.Count];
                 ListDefinitions.Items.CopyTo(word.Definitions, 0);
@@ -52,6 +50,11 @@ namespace sozluk
                 {
                     word.References = new string[ListReferences.Items.Count];
                     ListReferences.Items.CopyTo(word.References, 0);
+                }
+                if (ListArticles.Items.Count is not 0)
+                {
+                    word.ArticleLinks = new string[ListArticles.Items.Count];
+                    ListArticles.Items.CopyTo(word.ArticleLinks, 0);
                 }
 
                 ReturnedWord = word;
