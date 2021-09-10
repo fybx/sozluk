@@ -108,6 +108,9 @@ namespace sozluk
             "# enter full path to use a different file for dictionary. default is base directory, enter base to use the default file.",
             "dicpath: base",
             "lang: en",
+            "# choose a different search algorithm to make application better suit your needs.",
+            "# available methods are \"findcontaining\" and \"findstarting\" the default is \"findstarting\"",
+            "searchmethod: findstarting",
             "#please do not change keys (left side of colon)"
             };
 

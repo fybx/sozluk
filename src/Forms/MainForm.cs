@@ -13,6 +13,7 @@ namespace sozluk
         private Objects.Word CurrentWord;
         private string Theme;
         private string Language;
+        private Objects.SearchMethod SearchMethod;
 
         internal static string[] Settings;
         internal static string DictionaryFilePath = AppDomain.CurrentDomain.BaseDirectory + "dictionary.txt";
@@ -56,7 +57,7 @@ namespace sozluk
 
         private void SearchBox_TextChanged(object sender, EventArgs e)
         {
-            Objects.Word[] items = Words.Where(x => x.Name.StartsWith(SearchBox.Text.Replace(" ", string.Empty).ToLower())).ToArray();
+            Objects.Word[] items = Search();
             WordList.Items.Clear();
             foreach (var item in items)
                 WordList.Items.Add(item.Name);
@@ -105,6 +106,16 @@ namespace sozluk
         #endregion
 
         #region Methods
+        private Objects.Word[] Search()
+        {
+            if (SearchMethod is Objects.SearchMethod.FindContaining)
+                return Words.Where(x => x.Name.ToLower().Contains(SearchBox.Text.Trim().ToLower())).ToArray();
+            else if (SearchMethod is Objects.SearchMethod.FindStarting)
+                return Words.Where(x => x.Name.ToLower().StartsWith(SearchBox.Text.Trim().ToLower())).ToArray();
+            else
+                throw new ArgumentNullException(nameof(Settings));
+        }
+
         private void PopulateWordList()
         {
             var orderQuery = from word in Words orderby word.Name ascending select word;
@@ -127,7 +138,7 @@ namespace sozluk
 
         private void ApplySettings()
         {
-            foreach (var item in Settings)
+            foreach (string item in Settings)
             {
                 string key = Model.Tokenize(item)[0];
                 string value = Model.Tokenize(item)[1];
@@ -142,6 +153,9 @@ namespace sozluk
                         break;
                     case "theme":
                         ApplyTheme(value);
+                        break;
+                    case "searchmethod":
+                        SearchMethod = value is @"findstarting" ? Objects.SearchMethod.FindStarting : Objects.SearchMethod.FindContaining;
                         break;
                     default:
                         Model.ShowErrorMessage($"Dictionary application settings file contains a invalid setting key '{key}'! Please remove this entry to fix this issue.");
