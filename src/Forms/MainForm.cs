@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace sozluk
@@ -191,13 +192,6 @@ namespace sozluk
 
                 CurrentWord = Words.Find(x => x.Name == key);
                 LabelWord.Text = CurrentWord.Name;
-
-                Objects.Word before = CurrentWord;
-                if (string.IsNullOrEmpty(CurrentWord.WikipediaArticleLink))
-                {
-                    CurrentWord.WikipediaArticleLink = Model.GrabWikipediaLink(CurrentWord.Name);
-                    Model.EditEntry(before, CurrentWord, DictionaryFilePath);
-                }
                    
                 AddReferences(CurrentWord.References, CurrentWord.ArticleLinks);
                 string[] definitions = CurrentWord.Definitions.ToArray();
@@ -210,6 +204,20 @@ namespace sozluk
                         builder.AppendFormat("{0}. {1}\n", i + 1, definitions[i]);
                     LabelDefinition.Text = builder.ToString();
                 }
+
+                Thread t = new(new ParameterizedThreadStart(GetWikiLink));
+                t.Start(CurrentWord);
+            }
+        }
+
+        private static void GetWikiLink(object wordObj)
+        {
+            Objects.Word word = (Objects.Word)wordObj;
+            Objects.Word before = word;
+            if (string.IsNullOrEmpty(word.WikipediaArticleLink))
+            {
+                word.WikipediaArticleLink = Model.GrabWikipediaLink(word.Name);
+                Model.EditEntry(before, word, DictionaryFilePath);
             }
         }
 
