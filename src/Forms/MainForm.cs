@@ -228,9 +228,10 @@ namespace sozluk
         {
             Objects.Word word = (Objects.Word)wordObj;
             Objects.Word before = word;
-            if (string.IsNullOrEmpty(word.WikipediaArticleLink))
+            if (string.IsNullOrEmpty(word.WikipediaArticleLink) && word.WikipediaArticleLink is not @"wikilinkdoesnotexist")
             {
-                word.WikipediaArticleLink = Model.GrabWikipediaLink(word.Name);
+                string newLink = Model.GrabWikipediaLink(word.Name);
+                word.WikipediaArticleLink = newLink is not null ? newLink : @"wikilinkdoesnotexist";
                 Model.EditEntry(before, word, DictionaryFilePath);
             }
         }
