@@ -169,4 +169,22 @@
   <data name="star_whitetheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\UIResources\star_whitetheme.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="WordForm_AddHelper" xml:space="preserve">
+    <value>Important Notes:
+
+Application refuses to add entries if the word is present in dictionary file. Please check before adding entries.
+
+Avoid using characters such as &lt; &gt; : "" in definitions and references
+
+Don't use &lt;ref=wordName&gt; syntax while adding references, application will append required parts while saving to dictionary file.</value>
+  </data>
+  <data name="WordForn_EditHelper" xml:space="preserve">
+    <value>Important Notes:
+
+Word name cannot be changed since this tool only edits the entry's properties.
+
+Avoid using characters such as &lt; &gt; : "" in definitions and references
+
+Don't use &lt;ref=wordName&gt; syntax while adding references, application will append required parts while saving to dictionary file.</value>
+  </data>
 </root>

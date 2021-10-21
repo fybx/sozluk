@@ -1,7 +1,7 @@
 ﻿
 namespace sozluk
 {
-    partial class AddWordForm
+    partial class WordForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace sozluk
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddWordForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WordForm));
             this.BtnAdd = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
             this.TxtWordName = new System.Windows.Forms.TextBox();
@@ -68,7 +68,7 @@ namespace sozluk
             this.BtnAdd.TabIndex = 0;
             this.BtnAdd.Text = "&Add word";
             this.BtnAdd.UseVisualStyleBackColor = false;
-            this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
+            this.BtnAdd.Click += new System.EventHandler(this.BtnFinalize_Click);
             // 
             // BtnCancel
             // 
@@ -94,11 +94,11 @@ namespace sozluk
             this.TxtWordName.Size = new System.Drawing.Size(394, 23);
             this.TxtWordName.TabIndex = 2;
             // 
-            // InnerLabel
+            // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(10, 17);
-            this.label1.Name = "InnerLabel";
+            this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 15);
             this.label1.TabIndex = 12;
             this.label1.Text = "Word name:";
@@ -313,7 +313,7 @@ namespace sozluk
             this.BtnAddArticle.UseVisualStyleBackColor = true;
             this.BtnAddArticle.Click += new System.EventHandler(this.BtnAddArticle_Click);
             // 
-            // AddWordForm
+            // WordForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -332,12 +332,11 @@ namespace sozluk
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "AddWordForm";
+            this.Name = "WordForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Add a word to dictionary";
             this.TopMost = true;
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

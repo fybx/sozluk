@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace sozluk
 {
-    public partial class AddWordForm : Form
+    public partial class WordForm : Form
     {
         public Objects.Word ReturnedWord = null; // MainForm will access this field to retrieve entry from user
         
@@ -11,11 +11,35 @@ namespace sozluk
 
         private string Language { get; }
 
-        public AddWordForm(string theme, string langCode)
+        /// <summary>
+        /// Create an instance of WordForm for adding a word to dictionary
+        /// </summary>
+        /// <param name="theme">Application-wide theme code</param>
+        /// <param name="langCode">Application-wide language code</param>
+        public WordForm(string theme, string langCode)
         {
             InitializeComponent();
             Theme = theme;
             Language = langCode;
+            Text = "Add a word to dictionary";
+            BtnAdd.Text = "Add word";
+            label3.Text = Properties.Resources.WordForm_AddHelper;
+        }
+
+        /// <summary>
+        /// Create an instance of WordForm for editing an existing word entry
+        /// </summary>
+        /// <param name="word">Word object to be edited</param>
+        /// <param name="theme">Application-wide theme code</param>
+        /// <param name="langCode">Application-wide language code</param>
+        public WordForm(Objects.Word word, string theme, string langCode)
+        {
+            InitializeComponent();
+            Theme = theme;
+            Language = langCode;
+            Text = string.Format("Editing word: {0}", word.Name);
+            BtnAdd.Text = "Save word";
+            label3.Text = Properties.Resources.WordForn_EditHelper;
         }
 
         #region Methods
@@ -28,10 +52,8 @@ namespace sozluk
         {
             throw new NotImplementedException();
         }
-        #endregion
 
-        #region Events
-        private void BtnAdd_Click(object sender, EventArgs e)
+        private void AddWord()
         {
             string wordNameInput = TxtWordName.Text.Trim();
 
@@ -54,6 +76,51 @@ namespace sozluk
 
                 ReturnedWord = word;
                 DialogResult = DialogResult.OK;
+            }
+            else
+                MessageBox.Show("Word name box and definitions list cannot be empty.", "Warning!");
+        }
+
+        private void SaveContents()
+        {
+            string wordNameInput = TxtWordName.Text.Trim();
+
+            if (ListDefinitions.Items.Count is not 0)
+            {
+                Objects.Word word = new(wordNameInput);
+                word.WikipediaArticleLink = Model.GrabWikipediaLink(wordNameInput);
+                word.Definitions = new string[ListDefinitions.Items.Count];
+                ListDefinitions.Items.CopyTo(word.Definitions, 0);
+                if (ListReferences.Items.Count is not 0)
+                {
+                    word.References = new string[ListReferences.Items.Count];
+                    ListReferences.Items.CopyTo(word.References, 0);
+                }
+                if (ListArticles.Items.Count is not 0)
+                {
+                    word.ArticleLinks = new string[ListArticles.Items.Count];
+                    ListArticles.Items.CopyTo(word.ArticleLinks, 0);
+                }
+
+                ReturnedWord = word;
+                DialogResult = DialogResult.OK;
+            }
+            else
+                MessageBox.Show("Word name box and definitions list cannot be empty.", "Warning!");
+        }
+        #endregion
+
+        #region Events
+        private void BtnFinalize_Click(object sender, EventArgs e)
+        {
+            switch (BtnAdd.Text[0])
+            {
+                case 'A':
+                    AddWord();
+                    break;
+                case 'E':
+                    SaveContents();
+                    break;
             }
         }
 
