@@ -24,13 +24,15 @@ namespace sozluk
             "# Add \"<ref=word_here>\" block to definitions, change \'word_here\' with your word\n" +
             "# Application will automatically handle this entry and show a link to referenced word\n" +
             "#\n" +
+            "# WARNING: ALWAYS LEAVE LAST LINE EMPTY\n" +
+            "# Application appends new entries but doesn't check for newline.\n" +
+            "#\n" +
             "# Adding article URLs: Only one URL link can be added per word.\n" +
             "# Place your URL link in quotes as you would enter definitions. Application uses a Regex condition to find and match URL links.\n" +
             "# Link will be shown near word label if found.\n" +
-            "# Default dictionary file (this) is named dictionary.txt" +
-            "# Dictionary file used by application can be changed by editing dictionary.settings" +
             "#\n" +
-            "# Next line starting with $ sign specifies words\' and definitions\' language";
+            "# Default dictionary file (this) is named dictionary.txt" +
+            "# Dictionary file used by application can be changed by editing dictionary.settings";
 
         #region Storage/Dictionary File
         /// <summary>
@@ -41,7 +43,6 @@ namespace sozluk
             string[] lines = new string[]
             {
                 StorageFileComment,
-                "$en=>tr",
                 "\"your library is empty\": \"Add words using this application or manually by editing dictionary.txt file in base directory.\" \"You can also use a different dictionary file. To use another file, edit dictionary.settings file in base directory.\"",
                 "\"fastidious\": \"müşkülpesent\""
             };
