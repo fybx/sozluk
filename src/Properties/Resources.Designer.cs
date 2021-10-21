@@ -229,5 +229,35 @@ namespace sozluk.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Important Notes:
+        ///
+        ///Application refuses to add entries if the word is present in dictionary file. Please check before adding entries.
+        ///
+        ///Avoid using characters such as &lt; &gt; : &quot;&quot; in definitions and references
+        ///
+        ///Don&apos;t use &lt;ref=wordName&gt; syntax while adding references, application will append required parts while saving to dictionary file. benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        internal static string WordForm_AddHelper {
+            get {
+                return ResourceManager.GetString("WordForm_AddHelper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Important Notes:
+        ///
+        ///Word name cannot be changed since this tool only edits the entry&apos;s properties.
+        ///
+        ///Avoid using characters such as &lt; &gt; : &quot;&quot; in definitions and references
+        ///
+        ///Don&apos;t use &lt;ref=wordName&gt; syntax while adding references, application will append required parts while saving to dictionary file. benzeri yerelleştirilmiş bir dize arar.
+        /// </summary>
+        internal static string WordForn_EditHelper {
+            get {
+                return ResourceManager.GetString("WordForn_EditHelper", resourceCulture);
+            }
+        }
     }
 }
