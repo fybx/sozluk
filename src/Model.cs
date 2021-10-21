@@ -67,14 +67,7 @@ namespace sozluk
             {
                 string[] lines = File.ReadAllLines(filePath).Where(x => !x.Contains("#")).ToArray();
                 for (int i = 0; i < lines.Length; i++)
-                {
-                    if (lines[i].StartsWith("$ key to value: "))
-                        keyValueLanguage = lines[i].Replace("$ key to value: ", string.Empty).Split(new char[] { '=', '>' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-                    else
-                    {
-                        dictionary.Add(new Objects.Word(lines[i]));
-                    }
-                }
+                    dictionary.Add(new Objects.Word(lines[i]));
             }
             catch (Exception e)
             {
